@@ -41,8 +41,8 @@ class UNet11(nn.Module):
         :param num_classes:
         :param num_filters:
         :param pretrained:
-            False - no pre-trained network used
-            True - encoder pre-trained with VGG11
+            False - no pre-trained network is used
+            True  - encoder is pre-trained with VGG11
         """
         super().__init__()
         self.pool = nn.MaxPool2d(2, 2)
@@ -91,9 +91,9 @@ class UNet11(nn.Module):
 def unet11(pretrained=False, **kwargs):
     """
     pretrained:
-            False - no pre-trained network used
-            True - encoder pre-trained with VGG11
-            carvana - all weights pre trained on
+            False - no pre-trained network is used
+            True  - encoder is pre-trained with VGG11
+            carvana - all weights are pre-trained on
                 Kaggle: Carvana dataset https://www.kaggle.com/c/carvana-image-masking-challenge
     """
     model = UNet11(pretrained=pretrained, **kwargs)
@@ -132,9 +132,11 @@ class DecoderBlockV2(nn.Module):
         return self.block(x)
 
 
-class TernausNet34(nn.Module):
+class AlbuNet(nn.Module):
     """
         UNet (https://arxiv.org/abs/1505.04597) with Resnet34(https://arxiv.org/abs/1512.03385) encoder
+
+        Proposed by Alexander Buslaev: https://www.linkedin.com/in/al-buslaev/
 
         """
 
@@ -143,8 +145,8 @@ class TernausNet34(nn.Module):
         :param num_classes:
         :param num_filters:
         :param pretrained:
-            False - no pre-trained network used
-            True - encoder pre-trained with resnet34
+            False - no pre-trained network is used
+            True  - encoder is pre-trained with resnet34
         :is_deconv:
             False: bilinear interpolation is used in decoder
             True: deconvolution is used in decoder
